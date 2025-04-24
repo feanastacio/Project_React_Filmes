@@ -1,0 +1,56 @@
+.listagem{
+    /* vamos retirar:
+        header: 75px
+        cadastro: 225px
+        footer: 40px
+    */
+    display: flex;
+    padding: 40px;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - (75px + 252px + 40));
+}
+
+.listagem h1{
+    text-transform: uppercase;
+}
+
+.listagem hr{
+    width: 100%;
+    margin-top: 5px;
+    max-width: 300px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #73061b;
+}
+
+.item_lista img {
+    height: 28px;
+}
+
+.tabela {
+    width: 100%;  
+    margin-top: 30px;  
+}
+
+.tabela table{
+    width: 100%;
+}
+
+.tabela .cabecalho :first-child{
+    width: 300px;
+}
+
+.tabela .cabecalho :nth-child(2){
+    width: 100px;
+}
+
+.tabela .cabecalho th{
+    width: 100px;
+}
+
+
+.item_lista td{
+    /* Desgrudar o item do titulo */
+    padding: 20px 0 5px 0;
+}
