@@ -1,8 +1,25 @@
+import { Fragment } from "react";
+import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
+import Cadastro from "../../components/cadastro/Cadastro";
+import Lista from "../../components/lista/Lista";
 
 const CadastroFilme = () => {
     return(
-        <Header/>
+        <Fragment>
+            <Header/>
+            <main>
+             <Cadastro/>
+             <Lista/>
+            </main>
+            <Footer/>
+        </Fragment>
+
+        // Ou só <> </> resolveria também
+        // <>
+        //     <Header/>
+        //     <Footer/>
+        // </>
     )
 }
 

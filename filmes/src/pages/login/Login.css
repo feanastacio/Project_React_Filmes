@@ -1,17 +1,17 @@
 /* A mãe de todos */
 .main_login{
-    display: flex;
     height: 100vh;
+    display: flex;
 }
 
 /* Banner da esquerda */
 .banner{
-    background-image: url("../../assets/img/fundoLogin.png");
     flex: 1;
+    background-image: url("../../assets/img/fundoLogin.png");
 
     /* Modificar algumas caracteristicas da imagem */
-    background-position: center;
     background-size:contain;
+    background-position: center;
     background-repeat: no-repeat;
 }
 
@@ -23,20 +23,19 @@
     background-color: #CC3F55;
     /* Centralizar campo */
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
 }
 
 .form_login{
-    color: white;
-
     width: 70%;
     height: 50%;
     display: flex;
-    justify-content: space-around;
+    color: white;
     align-items: center;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .form_login h1{
@@ -58,8 +57,8 @@
 
 .campo_input input{
     height: 30px;
-    padding: 0px 10px;
     margin-top: 7px;
+    padding: 0px 10px;
 
     border: none;
     outline: none;

@@ -1,9 +1,11 @@
 .botao{
-    padding: 10px 100px;
+    /* padding: 5px 100px; */
     border: none;
-    cursor: pointer;
-    background-color: #73061B;
+    width: 200px;
+    height: 30px;
     color: white;
+    cursor: pointer;
     border-radius: 6px;
-    font-weight: bolder;
+    font-weight: bolder; /*Para deixar em negrito*/
+    background-color: #73061B;
 }

@@ -1,0 +1,34 @@
+header{
+    height: 75px;
+    background-color: #CC3F55;
+    /* Borda */
+    box-shadow: 1px 4px 4px 0px #0000002f;
+    position: relative;
+}
+
+.cabecalho{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cabecalho img{
+    height: 60px;
+}
+
+.link_header{
+    color: white;
+    margin-left: 45px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px){
+    .cabecalho img{
+        height: 30px;
+    }
+
+    .link_header{
+        margin-left: 10px;
+    }
+}
