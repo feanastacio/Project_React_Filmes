@@ -20,7 +20,7 @@ const Login = () => {
                         <input type="password" name="senha" placeholder="Digite sua Senha:"/>
                     </div>
                 </div>
-                <Botao/>
+                <Botao nomeDoBotao = "Entrar"/>
             </form>
         </section>
         </main>

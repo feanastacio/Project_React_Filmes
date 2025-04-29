@@ -5,7 +5,7 @@
         footer: 40px
     */
     display: flex;
-    padding: 40px;
+    padding: 40px 0;
     align-items: center;
     flex-direction: column;
     height: calc(100vh - (75px + 252px + 40));
@@ -35,22 +35,57 @@
 
 .tabela table{
     width: 100%;
+    border-collapse: collapse;
 }
 
-.tabela .cabecalho :first-child{
+.tabela .table_cabecalho :first-child{
     width: 300px;
 }
 
-.tabela .cabecalho :nth-child(2){
-    width: 100px;
+.tabela .table_cabecalho :nth-child(2){
+    width: 200px;
 }
 
-.tabela .cabecalho th{
+.tabela .table_cabecalho th{
     width: 100px;
 }
-
 
 .item_lista td{
     /* Desgrudar o item do titulo */
-    padding: 20px 0 5px 0;
+    padding: 20px 0 10px 0;
+}
+
+.item_lista{
+    text-align: center;
+    border-bottom: solid 1px #73061b20;
+}
+
+@media screen and (max-width: 768px){
+    /* 1px - 768px  */
+    .tabela thead{
+        display: none;
+    }
+    
+    .item_lista td{
+        display: grid;
+        text-align: left;
+        padding: 10px 10px 10px 0;
+        grid-template-columns: 10ch auto;
+    }
+
+    .item_lista td::before{
+        /* Adiciona o data-cell do html e coloca os : depois */
+        width: 80px;
+        font-weight: 700;
+        text-align: left;
+        content: attr(data-cell) ":";
+    }
+
+    .item_lista td:last-child{
+        margin-bottom: 24px;
+    }
+
+    .item_lista td::first-child{
+        margin-top: 24px;
+    }
 }

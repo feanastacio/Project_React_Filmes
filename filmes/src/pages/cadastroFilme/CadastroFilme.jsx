@@ -9,7 +9,8 @@ const CadastroFilme = () => {
         <Fragment>
             <Header/>
             <main>
-             <Cadastro/>
+             <Cadastro tituloCadastro="Cadastro de Filme"
+             digiteText="Digite o nome do Filme"/>
              <Lista/>
             </main>
             <Footer/>
