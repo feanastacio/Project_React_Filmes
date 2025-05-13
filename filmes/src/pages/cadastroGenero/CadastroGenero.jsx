@@ -55,7 +55,7 @@ const CadastroGenero = () => {
                 console.log(error);
             }
         } else {
-           alerta("error", "Erro! Entre em contato com o suporte.")
+           alerta("error", "Erro! Preencha o campo.")
         }
         // try => tentar(o esperado)
         // catch => lança a exceção
