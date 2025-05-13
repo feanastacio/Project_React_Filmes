@@ -2,6 +2,7 @@ footer{
     height: 40px;
     display: flex;
     color: white;
+    text-align: center;
     align-items: center;
     justify-content: center;
     background-color: #CC3F55;
