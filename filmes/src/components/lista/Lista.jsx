@@ -23,12 +23,21 @@ const Lista = (props) => {
                     </thead>
                     {/* tbody => corpo da tabela */}
                     <tbody>
-                        <tr className="item_lista">
-                            <td data-cell="Nome">Velozes e furiosos</td>
-                            <td style={{display:props.visible}} data-cell="Gênero">Ação</td>
-                            <td data-cell="Editar"><img src={Editar} alt="Caneta" /></td>
-                            <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" /></td>
-                        </tr>
+                    {props.lista && props.lista.length > 0 ? (
+                        // vamos mapear os itens da lista 
+                        props.lista.map((item) => (
+                            <tr className="item_lista" key={item.idGenero}>
+                                <td data-cell="Nome">
+                                    {item.nome}
+                                </td>
+                                <td style={{display:props.visible}} data-cell="Gênero">Ação</td>
+                                <td data-cell="Editar"><img src={Editar} alt="Caneta" /></td>
+                                <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" onClick={()=> (props.funcExcluir(item))}/></td>
+                            </tr>
+                        ))): (
+                        <p>Nenhum genero encontrado</p>
+                        )
+                    }
                     </tbody>
                 </table>
             </div>
