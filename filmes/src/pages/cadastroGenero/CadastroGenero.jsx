@@ -102,13 +102,37 @@ const CadastroGenero = () => {
         // Alerta - fim        
     }
 
+    async function editarGenero(genero) {
+        // console.log(genero);  //Serve para aparecer no inspecionar
+        const { value: novoGenero } = await Swal.fire({
+            title: "Modifique o seu gênero: ",
+            input: "text",
+            inputLabel: "Novo Gênero",
+            inputValue: genero.nome, // é o valor que já vai vim preenchido tenho do campo
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "Esse campo precisa estar preenchido!";
+                }
+            }
+        });
+        if (novoGenero) {
+            try {
+                api.put(`genero/${genero.idGenero}`, {nome: novoGenero});
+                Swal.fire(`O gênero foi modificado ${novoGenero}`);
+                listaGenero();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
 
     useEffect(() => {
         // ao nascer
         // alterada(excluir, editar um item ou adicionar) 
         // alertar("sucess", "Lista modificada")
         listarGenero(); // Assim que minha tela for recrregada vai ser chamada minha função listarGenero, fazendo com que apareça na tela
-    }, [listarGenero])  // fim de teste
+    }, [listaGenero])  // fim de teste
 
     // function CadastroGenero(){
     //     alert("Entrou dentro da func cadastrarGenero")    
@@ -144,6 +168,7 @@ const CadastroGenero = () => {
                     // atribuir para lista, o meu estado atual:
                     lista={listaGenero}
                     funcExcluir={excluirGenero}
+                    funcEditar={editarGenero}
                 />
             </main>
             <Footer />

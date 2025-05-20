@@ -31,7 +31,7 @@ const Lista = (props) => {
                                     {item.nome}
                                 </td>
                                 <td style={{display:props.visible}} data-cell="Gênero">Ação</td>
-                                <td data-cell="Editar"><img src={Editar} alt="Caneta" /></td>
+                                <td data-cell="Editar"><img src={Editar} alt="Caneta" onClick={()=> (props.funcEditar(item))} /></td>
                                 <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" onClick={()=> (props.funcExcluir(item))}/></td>
                             </tr>
                         ))): (
