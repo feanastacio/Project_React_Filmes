@@ -1,12 +1,8 @@
 import { use, useEffect, useState } from "react";
 
-// importando a api
-import api from "../../Services/services";
+import api from "../../Services/services"; // importando a api
 
-// 
 import Swal from 'sweetalert2'
-
-// import axios from "axios";
 
 // importação de componentes:
 import Footer from "../../components/footer/Footer";
@@ -19,29 +15,29 @@ import { data } from "react-router-dom";
 const CadastroGenero = () => {
 
     // nome do genero
+    // Só criamos o useState quando precisamos guardar uma informação que muda e que o React precisa acompanhar
+    // Quem que eu vou manipular???
     const [genero, setGenero] = useState("");
     const [listaGenero, setListaGenero] = useState([]);
-    const [excluiGenero, setExcluirGenero] = useState([]);
 
-    function alerta(icone,mensagem){
-        // Alerta - começo
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: icone,
-                    title: mensagem
-                });
-
-                // Alerta - fim 
+    function alertar(icone, mensagem) {
+        // alertar - começo
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: icone,
+            title: mensagem
+        });
+        // alertar - fim 
     }
 
     async function cadastrarGenero(e) {
@@ -52,75 +48,67 @@ const CadastroGenero = () => {
                 // cadastrar um gênero: post
                 await api.post("genero", { nome: genero });
                 // alert("obaaaa, cadastrou!!!!")
-                alerta("success", "Cadastro realizado com sucesso!")
+                alertar("success", "Cadastro realizado com sucesso!")
                 setGenero("");
+                listaGenero(); //Atualiza minha lista assim que algo é adicionado
             } catch (error) {
                 // alert("deu ruimmmmm!!!");
-                alerta("error", "Erro! Entre em contato com o suporte")
+                alertar("error", "Erro! Entre em contato com o suporte")
                 console.log(error);
             }
         } else {
-           alerta("error", "Erro! Preencha o campo.")
+            alertar("error", "Erro! Preencha o campo.")
         }
         // try => tentar(o esperado)
         // catch => lança a exceção
     }
 
-    // async function excluirGenero(e){
-    //     e.preventDefault();
-    //     try {
-    //         await api.delete("genero", {nome: genero, id: genero})
-    //         alerta("sucess", "Gênero deletado com sucesso!")
-    //         setExcluirGenero("");
-    //     } catch (error) {
-    //         alerta("error", "Erro! Entre em contato com o suporte")
-    //         console.log(error);
-    //     }
-    // }
-
-    async function listarGenero(){
-        try{
+    async function listarGenero() {
+        try {
             // await - Aguarda ter uma  resposta da solicitação
             const resposta = await api.get("genero")
             // console.log(resposta.data[3]);
-            setListaGenero(resposta.data);           
-        }catch(error){
-           console.log(error);
+            setListaGenero(resposta.data);
+        } catch (error) {
+            console.log(error);
         }
     }
 
-    async function excluirGenero(generoId){
-        await api.delete(`genero/${generoId.idGenero}`)
-        alerte("success", "Gênero deletado com sucesso!")
-        setExcluirGenero("");
-    }
-
-    useEffect(() => {    
-        listarGenero();
-    }, [listarGenero])
-    // fim de teste
-
-    function alerte(icone,mensagem){
-            // Alerta - começo
+    async function excluirGenero(generoId) {
         Swal.fire({
             title: "Você tem certeza?",
-            text: "Após a confirmação não vai ter como reverter",
-            icon: "Perigo",
+            text: "Você não vai conseguir reverter isso!",
+            icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Sim, quero deletar!"
-        }).then(async(result) => {
-             if (result.isConfirmed) {
-                await Swal.fire({
-                    title: "Deletado!",
-                    text: "Seu gênero foi deletado com sucesso",
-                    icon: "success"
-                });
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await api.delete(`genero/${generoId.idGenero}`);
+                    alertar("success", "Gênero excluido com sucesso!")
+                    listaGenero();
+                } catch (error) {
+                    console.log(error);
+                }
+                // Swal.fire({
+                //     title: "Deletado!",
+                //     text: "seu arquivo foi apagado com sucesso!",
+                //     icon: "success"
+                // });
             }
         });
-             // Alerta - fim 
+        // Alerta - fim        
     }
+
+
+    useEffect(() => {
+        // ao nascer
+        // alterada(excluir, editar um item ou adicionar) 
+        // alertar("sucess", "Lista modificada")
+        listarGenero(); // Assim que minha tela for recrregada vai ser chamada minha função listarGenero, fazendo com que apareça na tela
+    }, [listarGenero])  // fim de teste
 
     // function CadastroGenero(){
     //     alert("Entrou dentro da func cadastrarGenero")    
@@ -130,7 +118,7 @@ const CadastroGenero = () => {
     // useEffect(() => {
     //     console.log(genero);
     // }, [genero]);    
-    
+
     // Assim que a página renderizar,, o método listarGenero() será chamado
     // teste: validar o que esta sendo sendo passado como resposta em listarGenero
 
@@ -155,7 +143,7 @@ const CadastroGenero = () => {
                     visible="none"
                     // atribuir para lista, o meu estado atual:
                     lista={listaGenero}
-                    funcExcluir = {excluirGenero}
+                    funcExcluir={excluirGenero}
                 />
             </main>
             <Footer />
