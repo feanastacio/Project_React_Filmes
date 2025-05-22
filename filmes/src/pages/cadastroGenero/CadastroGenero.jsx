@@ -166,6 +166,7 @@ const CadastroGenero = () => {
                     nomeLista="Lista de Gêneros"
                     visible="none"
                     // atribuir para lista, o meu estado atual:
+                    tipoLista = "genero"
                     lista={listaGenero}
                     funcExcluir={excluirGenero}
                     funcEditar={editarGenero}

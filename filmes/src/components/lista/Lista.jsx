@@ -26,11 +26,13 @@ const Lista = (props) => {
                     {props.lista && props.lista.length > 0 ? (
                         // vamos mapear os itens da lista 
                         props.lista.map((item) => (
-                            <tr className="item_lista" key={item.idGenero}>
+                            <tr className="item_lista" key={props.tipoLista == "genero" ? item.idGenero : item.idFilme}> {/*metodo de fazer uma condição para exibir informações necessárias*/}
                                 <td data-cell="Nome">
-                                    {item.nome}
+                                    {props.tipoLista == "genero" ? item.nome : item.titulo} {/*metodo de fazer uma condição para exibir informações necessárias*/}
                                 </td>
-                                <td style={{display:props.visible}} data-cell="Gênero">Ação</td>
+                                <td style={{display:props.visible}} data-cell="Gênero">
+                                    {item.genero?.nome}
+                                </td>
                                 <td data-cell="Editar"><img src={Editar} alt="Caneta" onClick={()=> (props.funcEditar(item))} /></td>
                                 <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" onClick={()=> (props.funcExcluir(item))}/></td>
                             </tr>

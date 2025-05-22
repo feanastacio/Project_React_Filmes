@@ -15,6 +15,7 @@ const CadastroFilme = () => {
     const [listaGenero, setListaGenero] = useState([]);
     const [genero, setGenero] = useState("");
     const [filme, setFilme] = useState("");
+    const [listaFilme, setListaFilme] = useState([]);
 
     function alertar(icone, mensagem) {
         // alertar - começo
@@ -42,7 +43,7 @@ const CadastroFilme = () => {
         if (filme.trim() !== "") {
             try {
                 await api.post("filme", {titulo: filme, idGenero: genero});
-                alertar("sucess", "Sucesso! Cadastro realizado com sucesso!")
+                alertar("success", "Cadastro realizado com sucesso!")
                 setFilme("");
                 setGenero("");
             } catch (error) {
@@ -52,6 +53,15 @@ const CadastroFilme = () => {
             alertar("error", "Erro! Preencha os campos.")
         }
         // alert("foi chamado o cadastrarfilme")
+    }
+
+    async function listarFilme() {
+        try {
+            const resposta = await api.get("filme") 
+            setListaFilme(resposta.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async function listarGenero(){ // funcao para trazer os generos no meu select
@@ -64,7 +74,7 @@ const CadastroFilme = () => {
     }
 
     useEffect(() => {
-
+        listarFilme();
         listarGenero();
     },[]);
 
@@ -85,6 +95,8 @@ const CadastroFilme = () => {
                 />
                 <Lista 
                     nomeLista="Lista de Filmes"
+                    tipoLista = "filme"
+                    lista = {listaFilme}
                 />
             </main>
             <Footer/>
